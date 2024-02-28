@@ -1,0 +1,88 @@
+@use '../source/config/reset';
+@use '../source/config/cores';
+@use '../source/config/variaveis';
+@use '../source/secoes/produtos';
+@use 'sass:math';
+
+@function pixelParaEm($alvoEmPixel, $conTextoEmPixel: 16px) {
+    @return math.div($alvoEmPixel, $conTextoEmPixel)+em;
+}
+
+body {
+    background-color: cores.$corDeFundo;
+}
+
+li {
+    list-style: none;
+}
+
+header {
+    background-color: cores.$corPrincipal;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+section {
+    padding: 56px 0;
+    height: calc(100vh - 70px);
+    display: block;
+    
+    .container-produtos {
+        display:block
+    }
+
+    h2 {
+    font-size: pixelParaEm(48px);
+    }
+}
+
+.container {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    max-width: 1024px;
+    width:100%;
+    margin: 0 auto;
+}
+
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+        font-weight: bold;
+        margin-left: 24px;
+    }
+
+    a {
+        color: cores.$corDoTexto;
+        text-decoration: none;
+    }
+
+}
+
+
+
+@media screen and (max-width: variaveis.$tablet) {
+    .container {
+        max-width: 80%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 48.5%);
+        column-gap: 3%;
+    }
+}
+
+@media screen and (max-width: variaveis.$mobile) {
+    .products {
+        display: block;
+    }
+
+    .product-item  {
+        margin-bottom: 32px;
+    }
+}
